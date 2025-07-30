@@ -23,7 +23,6 @@ app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
   sgMail.setApiKey(process.env.SEND_GRID_KEY);
 });
-console.log(process.env.SEND_GRID_KEY,"key");
 
 app.post("/api/sendmail", async (req, res) => {
   

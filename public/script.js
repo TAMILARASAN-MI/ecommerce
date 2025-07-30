@@ -677,8 +677,8 @@ const categoryFilter = document.getElementById('category-filter');
 const sortSelect = document.getElementById('sort-select');
 const productModal = document.getElementById('product-modal');
 const closeModal = document.getElementById('close-modal');
-// const API="https://davidmusicinstruments.vercel.app"
-const API="http://localhost:8080"
+const API="https://davidmusicinstruments.vercel.app"
+// const API="http://localhost:8080"
 
 // Initialize App
 document.addEventListener('DOMContentLoaded', function () {
