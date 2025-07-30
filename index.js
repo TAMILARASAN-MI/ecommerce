@@ -19,6 +19,9 @@ const frontendPath = path.join(__dirname)
 
 app.use(express.static(frontendPath))
 
+app.get('/', (req, res) => {
+  res.sendFile(path.join(frontendPath, 'index.html'));
+});
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
