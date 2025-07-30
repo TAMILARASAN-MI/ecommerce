@@ -677,6 +677,8 @@ const categoryFilter = document.getElementById('category-filter');
 const sortSelect = document.getElementById('sort-select');
 const productModal = document.getElementById('product-modal');
 const closeModal = document.getElementById('close-modal');
+// const API="https://davidmusicinstruments.vercel.app"
+const API="http://localhost:8080"
 
 // Initialize App
 document.addEventListener('DOMContentLoaded', function () {
@@ -1225,7 +1227,7 @@ async function handleContactSubmit(e) {
     successMessage.style.display = 'block';
     const formData = new FormData(e.target); // e.target refers to the form
     const data = Object.fromEntries(formData.entries());
-    const response = await fetch("https://davidmusicinstruments.vercel.app/api/sendmail", {
+    const response = await fetch(API+"/api/sendmail", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -1255,7 +1257,7 @@ async function handleCheckoutSubmit(e) {
         return {...elem,...product}
     })
     
-    const response = await fetch("https://davidmusicinstruments.vercel.app/api/order", {
+    const response = await fetch(API+"/api/order", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

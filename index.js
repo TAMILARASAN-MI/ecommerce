@@ -21,13 +21,15 @@ app.use(express.static(frontendPath))
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
+  sgMail.setApiKey(process.env.SEND_GRID_KEY);
 });
+console.log(process.env.SEND_GRID_KEY,"key");
 
 app.post("/api/sendmail", async (req, res) => {
+  
   try {
     const { name, email, subject, message } = req.body;
     // Set up nodemailer
-    await sgMail.setApiKey(process.env.SEND_GRID_KEY);
 
     const mailOptions = {
       from: `David Instruments <davidmusicinstrumental@gmail.com>`,
@@ -41,6 +43,7 @@ app.post("/api/sendmail", async (req, res) => {
       .status(200)
       .json({ status: "success", message: "Email sent successfully!" });
   } catch (error) {
+    console.log(error,"err");
     res.status(500).json({ status: "error", message: "Internal server error" });
   }
 });
@@ -59,9 +62,6 @@ app.post("/api/order", async (req, res) => {
       expiry, cart,
       cvv } = req.body;
     console.log(req.body, 'payload');
-
-    // Set up nodemailer
-    await sgMail.setApiKey("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");
 
     const cartHtml = cart.map(item => `
   <tr>
