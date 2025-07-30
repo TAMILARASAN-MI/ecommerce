@@ -2,6 +2,7 @@ import express from "express";
 import sgMail from '@sendgrid/mail';
 import cors from 'cors'
 import path from 'path'
+import dotenv from 'dotenv'
 import { fileURLToPath } from 'url'
 
 const app = express();
@@ -9,10 +10,12 @@ const PORT = 8080;
 app.use(cors())
 app.use(express.json());
 
+dotenv.config()
+
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
-const frontendPath = path.join(__dirname, "../../")
+const frontendPath = path.join(__dirname)
 
 app.use(express.static(frontendPath))
 
@@ -24,7 +27,7 @@ app.post("/api/sendmail", async (req, res) => {
   try {
     const { name, email, subject, message } = req.body;
     // Set up nodemailer
-    await sgMail.setApiKey("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");
+    await sgMail.setApiKey(process.env.SEND_GRID_KEY);
 
     const mailOptions = {
       from: `David Instruments <davidmusicinstrumental@gmail.com>`,

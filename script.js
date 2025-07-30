@@ -1225,7 +1225,7 @@ async function handleContactSubmit(e) {
     successMessage.style.display = 'block';
     const formData = new FormData(e.target); // e.target refers to the form
     const data = Object.fromEntries(formData.entries());
-    const response = await fetch("http://localhost:8080/api/sendmail", {
+    const response = await fetch("https://davidmusicinstruments.vercel.app/api/sendmail", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -1255,7 +1255,7 @@ async function handleCheckoutSubmit(e) {
         return {...elem,...product}
     })
     
-    const response = await fetch("http://localhost:8080/api/order", {
+    const response = await fetch("https://davidmusicinstruments.vercel.app/api/order", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
