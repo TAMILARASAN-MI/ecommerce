@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>David Music Instruments Shop</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-music"></i>
+                <span>David Instruments</span>
+            </div>
+
+            <div class="nav-menu" id="nav-menu">
+                <a href="#home" class="nav-link active" data-page="home">Home</a>
+                <a href="#products" class="nav-link" data-page="products">Products</a>
+                <a href="#about" class="nav-link" data-page="about">About</a>
+                <a href="#contact" class="nav-link" data-page="contact">Contact</a>
+            </div>
+
+            <div class="nav-search">
+                <input type="text" id="search-input" placeholder="Search instruments...">
+                <button id="search-btn" type="button" title="Search"><i class="fas fa-search"></i></button>
+            </div>
+
+            <div class="nav-icons">
+                <button class="nav-icon" id="cart-btn">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="cart-count">0</span>
+                </button>
+                <button class="nav-icon" id="account-btn" title="Account">
+                    <i class="fas fa-user"></i>
+                </button>
+                <button class="nav-toggle" id="nav-toggle" title="Toggle navigation menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Home Page -->
+        <section id="home" class="page active">
+            <!-- Hero Section -->
+            <div class="hero">
+                <div class="hero-content">
+                    <h1>Your Music Journey <span class="highlight">Starts Here</span></h1>
+                    <p>Discover premium musical instruments from the world's finest brands. Professional quality,
+                        unbeatable prices, and expert support.</p>
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary" data-page="products">Shop Now</button>
+                        <button class="btn btn-secondary" id="learn-more-btn">Learn More</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Features Section -->
+            <section class="features" id="features-section">
+                <div class="container">
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <i class="fas fa-truck feature-icon"></i>
+                            <h3>Free Shipping</h3>
+                            <p>Free shipping on orders </p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-shield-alt feature-icon"></i>
+                            <h3>Quality Guarantee</h3>
+                            <p>30-day money-back guarantee</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-headphones feature-icon"></i>
+                            <h3>Expert Support</h3>
+                            <p>24/7 customer support from music experts</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Featured Products -->
+            <section class="featured-products">
+                <div class="container">
+                    <h2>Featured Instruments</h2>
+                    <p class="section-subtitle">Handpicked by our music experts for exceptional quality and value</p>
+                    <div class="products-grid" id="featured-products-grid">
+                        <div class="product-card" data-product-id="5">
+                            <div class="product-image">
+                                <img src="https://images.pexels.com/photos/3721941/pexels-photo-3721941.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800"
+                                    alt="Yamaha YAS-62 Alto Saxophone">
+                                <div class="product-badge">Featured</div>
+                            </div>
+                            <div class="product-info">
+                                <div class="product-brand">Yamaha</div>
+                                <h3 class="product-name">Yamaha YAS-62 Alto Saxophone</h3>
+                                <div class="product-rating">
+                                    <span class="stars">★★★★☆</span>
+                                    <span class="rating-text">4.9 (76 reviews)</span>
+                                </div>
+                                <div class="product-price">
+                                    ₹ 2,899
+
+                                </div>
+                                <div class="product-actions">
+                                    <button class="btn btn-outline btn-small view-product" data-product-id="5">
+                                        View Details
+                                    </button>
+                                    <button class="btn btn-primary btn-small add-to-cart" data-product-id="5">
+                                        Add to Cart
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Products will be loaded by JavaScript -->
+                    </div>
+                    <div class="text-center">
+                        <button class="btn btn-primary" data-page="products">View All Products</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Newsletter -->
+            <section class="newsletter">
+                <div class="container">
+                    <h2>Stay in Tune</h2>
+                    <p>Get the latest news, deals, and music tips delivered to your inbox</p>
+                    <form class="newsletter-form" id="newsletter-form">
+                        <input type="email" placeholder="Enter your email" required>
+                        <button type="submit">Subscribe</button>
+                    </form>
+                    <div class="newsletter-success" id="newsletter-success">
+                        Thank you for subscribing!
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- Products Page -->
+        <section id="products" class="page">
+            <div class="container">
+                <div class="products-header">
+                    <h1>Our Instruments</h1>
+                    <div class="products-controls">
+                        <label for="category-filter" class="visually-hidden">Filter by Category</label>
+                        <select id="category-filter" title="Filter by Category">
+                            <option value="all">All Categories</option>
+                            <option value="guitars">Guitars</option>
+                            <option value="pianos">Pianos</option>
+                            <option value="drums">Drums</option>
+                            <option value="wind">Wind Instruments</option>
+                            <option value="keyboards">Keyboards</option>
+                        </select>
+                        <select id="sort-select" title="Sort Products">
+                            <option value="name">Sort by Name</option>
+                            <option value="price-low">Price: Low to High</option>
+                            <option value="price-high">Price: High to Low</option>
+                            <option value="rating">Rating</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="products-grid" id="products-grid">
+                    <!-- Products will be loaded by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Product Detail Modal -->
+        <div id="product-modal" class="modal">
+            <div class="modal-content">
+                <span class="close" id="close-modal">&times;</span>
+                <div class="product-detail" id="product-detail">
+                    <!-- Product details will be loaded by JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <!-- About Page -->
+        <section id="about" class="page">
+            <div class="container">
+                <div class="about-hero">
+                    <h1>About David Music Instruments Shop</h1>
+                    <p>For over , David Music Instruments Shop has been the premier destination for musicians seeking
+                        high-quality instruments, expert advice, and exceptional service.</p>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <i class="fas fa-music"></i>
+                        <h3>10,000+</h3>
+                        <p>Instruments Sold</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-users"></i>
+                        <h3>5,000+</h3>
+                        <p>Happy Customers</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-award"></i>
+                        <h3>100%</h3>
+                        <p>Performance</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-heart"></i>
+                        <h3>100%</h3>
+                        <p>Satisfaction Rate</p>
+                    </div>
+                </div>
+
+                <div class="about-content">
+                    <div class="about-text">
+                        <h2>Our Story</h2>
+                        <p>Founded in 2025 by professional musician David, HarmonyHub began as a small local
+                            music store with a simple mission: to provide musicians with access to the finest
+                            instruments and the knowledge to choose them wisely.</p>
+                        <p>What started as a passion project has grown into one of the most trusted names in musical
+                            instruments. We've built our reputation on three core principles: quality, expertise, and
+                            genuine care for our customers' musical journeys.</p>
+                    </div>
+                    <div class="about-mission">
+                        <h3>Our Mission</h3>
+                        <p>To inspire and empower musicians by providing exceptional instruments, expert guidance, and
+                            unparalleled service that helps bring their musical visions to life.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Page -->
+        <section id="contact" class="page">
+            <div class="container">
+                <h1>Contact Us</h1>
+                <p class="section-subtitle">We're here to help you find the perfect instrument</p>
+
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <div class="contact-method">
+                            <i class="fas fa-phone"></i>
+                            <h3>Phone Support</h3>
+                            <p>+91 877 800 8348</p>
+                            <span>Mon-Fri 9AM-6PM EST</span>
+                        </div>
+                        <div class="contact-method">
+                            <i class="fas fa-envelope"></i>
+                            <h3>Email Support</h3>
+                            <p>davidmusicinstrumental@gmail.com</p>
+                            <span>Response within  hours</span>
+                        </div>
+                        <div class="contact-method">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <h3>Visit Our Store</h3>
+                            <p>123 Music Street<br>Erode, TN</p>
+                            <span>Mon-Sat 9:30 AM-8 PM</span>
+                        </div>
+                    </div>
+
+                    <form class="contact-form" id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+                        <h3>Send us a Message</h3>
+                        <div class="form-group">
+
+                            <input type="hidden" name="access_key" value="bf1847da-b3d3-4293-8430-468b71934a4f">
+
+                            <input type="text" name="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject-select" class="visually-hidden">Subject</label>
+                            <select id="subject-select" name="subject" required title="Select Subject">
+                                <option value="">Select Subject</option>
+                                <option value="product-inquiry">Product Inquiry</option>
+                                <option value="order-status">Order Status</option>
+                                <option value="return">Return/Exchange</option>
+                                <option value="support">Technical Support</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+                        </div>
+                        <!-- Honeypot Spam Protection -->
+                        <input type="checkbox" name="botcheck" class="hidden">
+                        <button id="sendmsgbtn" type="submit" class="btn btn-primary">Send Message</button>
+                        <div class="form-success" id="contact-success">
+                            Thank you! We'll get back to you within  hours.
+                        </div>
+                    </form>
+
+
+
+
+
+
+                    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Cart Page -->
+        <section id="cart" class="page">
+            <div class="container">
+                <h1>Shopping Cart</h1>
+                <div class="cart-content" id="cart-content">
+                    <!-- Cart items will be loaded by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Checkout Page -->
+        <section id="checkout" class="page">
+            <div class="container">
+                <h1>Checkout</h1>
+                <div class="checkout-content">
+                    <form class="checkout-form" id="checkout-form">
+                        <div class="checkout-section">
+                            <h3>Contact Information</h3>
+                            <div class="form-row">
+                                <input type="email" name="email" placeholder="davidmusicinstrumental@gmail.com" required>
+                            </div>
+                            <div class="form-row">
+                                <input type="text" name="firstName" placeholder="First Name" required>
+                                <input type="text" name="lastName" placeholder="Last Name" required>
+                            </div>
+                        </div>
+
+                        <div class="checkout-section">
+                            <h3>Shipping Address</h3>
+                            <div class="form-row">
+                                <input type="text" name="address" placeholder="Street Address" required>
+                            </div>
+                            <div class="form-row">
+                                <input type="text" name="city" placeholder="City" required>
+                                <input type="text" name="state" placeholder="State" required>
+                                <input type="text" name="zipCode" placeholder="ZIP Code" required>
+                            </div>
+                        </div>
+
+                        <div class="checkout-section">
+                            <h3>Payment Information</h3>
+                            <div class="form-row">
+                                <input type="text" name="cardName" placeholder="Name on Card" required>
+                            </div>
+                            <div class="form-row">
+                                <input type="text" name="cardNumber" placeholder="Card Number" required>
+                            </div>
+                            <div class="form-row">
+                                <input type="text" name="expiry" placeholder="MM/YY" required>
+                                <input type="text" name="cvv" placeholder="CVV" required>
+                            </div>
+                        </div>
+
+                        <button type="submit" id="orderBtn" class="btn btn-primary btn-large">Complete Order</button>
+                    </form>
+
+                    <div class="order-summary" id="order-summary">
+                        <!-- Order summary will be loaded by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>David Music Instruments Shop</h3>
+                    <p>Your trusted partner in music </p>
+                    <div class="social-links">
+                        <a href="#https://x.com/TW2235610669901" title="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#https://x.com/TW2235610669901" title="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.youtube.com/@Tamilarasan.MI13" title="Instagram"><i
+                                class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/@Tamilarasan.MI13" title="YouTube"><i
+                                class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#" data-page="home">Home</a></li>
+                        <li><a href="#" data-page="products">Products</a></li>
+                        <li><a href="#" data-page="about">About</a></li>
+                        <li><a href="#" data-page="contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Customer Service</h4>
+                    <ul>
+                        <li><a href="#">Shipping Info</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-phone"></i> +91 877 800 8348</p>
+                    <p><i class="fas fa-envelope"></i> davidmusicinstrumental</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Erode, TN</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 David Music Instruments Shop . All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
