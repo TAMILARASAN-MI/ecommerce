@@ -83,7 +83,7 @@ app.post("/api/order", async (req, res) => {
       `- ${item.name} (ID: ${item.productId}) - ₹${item.price} x ${item.quantity}`
     ).join('\n');
  const transporter = nodemailer.createTransport({
-      host: smtp.gmail.com,
+      host: "smtp.gmail.com",
       port: 587,
       secure: false,
       auth: {
