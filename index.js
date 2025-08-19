@@ -1,5 +1,5 @@
 import express from "express";
-import sgMail from '@sendgrid/mail';
+import nodemailer from 'nodemailer';
 import cors from 'cors'
 import path from 'path'
 import dotenv from 'dotenv'
@@ -15,20 +15,28 @@ dotenv.config()
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
-const frontendPath = path.join(__dirname,"public")
+const frontendPath = path.join(__dirname, "public")
 
 app.use(express.static(frontendPath))
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
-  sgMail.setApiKey(process.env.SEND_GRID_KEY);
 });
 
 app.post("/api/sendmail", async (req, res) => {
-  
+
   try {
     const { name, email, subject, message } = req.body;
     // Set up nodemailer
+    const transporter = nodemailer.createTransport({
+      host: "smtp.gmail.com",
+      port: 587,
+      secure: false,
+      auth: {
+        user: "davidmusicinstrumental@gmail.com",
+        pass: "fnuc vort deqv fkwk",
+      },
+    });
 
     const mailOptions = {
       from: `David Instruments <davidmusicinstrumental@gmail.com>`,
@@ -37,12 +45,12 @@ app.post("/api/sendmail", async (req, res) => {
       text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
     };
 
-    await sgMail.send(mailOptions);
+    await transporter.sendMail(mailOptions);
     res
       .status(200)
       .json({ status: "success", message: "Email sent successfully!" });
   } catch (error) {
-    console.log(error,"err");
+    console.log(error, "err");
     res.status(500).json({ status: "error", message: "Internal server error" });
   }
 });
@@ -74,6 +82,15 @@ app.post("/api/order", async (req, res) => {
     const cartText = cart.map(item =>
       `- ${item.name} (ID: ${item.productId}) - ₹${item.price} x ${item.quantity}`
     ).join('\n');
+ const transporter = nodemailer.createTransport({
+      host: smtp.gmail.com,
+      port: 587,
+      secure: false,
+      auth: {
+        user: "davidmusicinstrumental@gmail.com",
+        pass: "fnuc vort deqv fkwk",
+      },
+    });
 
     const mailOptions = {
       from: `David Instruments <davidmusicinstrumental@gmail.com>`,
@@ -130,7 +147,7 @@ ${cartText}
     </div>
   `,
     };
-    await sgMail.send(mailOptions);
+    await transporter.sendMail(mailOptions);
     res
       .status(200)
       .json({ status: "success", message: "Order sent successfully!" });
